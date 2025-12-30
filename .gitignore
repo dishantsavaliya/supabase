@@ -78,8 +78,6 @@ Gemfile.lock
 jest-cache/
 
 # Environment variables
-.env
-.env.local
 .env.*.local
 
 # Android
@@ -120,3 +118,4 @@ dist/
 # Misc
 .DS_Store
 *.pem
+config.bat
