@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Try to find npm in common locations
+NPM_CMD=""
+if command -v npm >/dev/null 2>&1; then
+  NPM_CMD="npm"
+elif [ -f "/usr/local/bin/npm" ]; then
+  NPM_CMD="/usr/local/bin/npm"
+elif [ -f "/usr/bin/npm" ]; then
+  NPM_CMD="/usr/bin/npm"
+elif [ -f "/opt/homebrew/bin/npm" ]; then
+  NPM_CMD="/opt/homebrew/bin/npm"
+elif [ -f "$HOME/.nvm/versions/node/$(command -v node >/dev/null 2>&1 && node -v 2>/dev/null)/bin/npm" ]; then
+  NPM_CMD="$HOME/.nvm/versions/node/$(command -v node >/dev/null 2>&1 && node -v 2>/dev/null)/bin/npm"
+elif [ -f "/Users/$(whoami)/.nvm/versions/node/$(command -v node >/dev/null 2>&1 && node -v 2>/dev/null)/bin/npm" ]; then
+  NPM_CMD="/Users/$(whoami)/.nvm/versions/node/$(command -v node >/dev/null 2>&1 && node -v 2>/dev/null)/bin/npm"
+# Try common nvm node versions
+elif [ -f "/Users/admin/.nvm/versions/node/v20.19.5/bin/npm" ]; then
+  NPM_CMD="/Users/admin/.nvm/versions/node/v20.19.5/bin/npm"
+elif [ -f "/Users/admin/.nvm/versions/node/v18.19.0/bin/npm" ]; then
+  NPM_CMD="/Users/admin/.nvm/versions/node/v18.19.0/bin/npm"
+elif [ -f "/Users/admin/.nvm/versions/node/v16.20.0/bin/npm" ]; then
+  NPM_CMD="/Users/admin/.nvm/versions/node/v16.20.0/bin/npm"
+else
+  echo "❌ npm command not found! Please ensure Node.js and npm are installed."
+  echo ""
+  echo "🔍 Possible solutions:"
+  echo "1. Use terminal: Run 'git commit' from your terminal instead of SourceTree"
+  echo "2. Skip check: Use 'git commit --no-verify' to skip ESLint check"
+  echo "3. Manual check: Run 'npm run lint:staged' in your project folder first"
+  echo "4. Check Node.js: Ensure Node.js is installed and accessible"
+  echo ""
+  echo "📂 Current working directory: $(pwd)"
+  echo "🏠 Home directory: $HOME"
+  exit 1
+fi
+
+$NPM_CMD run lint:staged

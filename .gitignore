@@ -1,0 +1,122 @@
+# OSX
+.DS_Store
+
+# Xcode
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+**/.xcode.env.local
+
+# Android / IntelliJ
+build/
+.idea
+.gradle
+local.properties
+key.properties
+*.iml
+*.hprof
+.cxx/
+*.keystore
+*.jks
+!debug.keystore
+.kotlin/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log
+.yarn/
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Fastlane
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+
+# React Native / Metro
+.expo/
+.expo-shared/
+*.expo
+*.expo-shared/assets
+*.jsbundle
+*.map
+*.metro-cache
+*.tmp
+*.temp
+tmp/
+temp/
+
+# CocoaPods / Ruby
+**/Pods/
+**/Podfile.lock
+/vendor/bundle/
+.bundle/
+Gemfile.lock
+
+# Testing / Coverage
+/coverage
+jest-cache/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Android
+android/app/build/
+android/app/release/
+android/.gradle/
+android/build/
+android/local.properties
+android/android/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# iOS
+ios/build/
+ios/Pods/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+ios/*.xcodeproj/project.xcworkspace/xcuserdata/
+ios/DerivedData/
+
+# Build outputs
+build/
+dist/
+*.log
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Misc
+.DS_Store
+*.pem

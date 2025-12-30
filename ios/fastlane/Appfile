@@ -1,0 +1,7 @@
+app_identifier ENV["APP_IDENTIFIER"] # e.g. com.yourcompany.yourapp
+apple_id ENV["APPLE_ID"]             # Your Apple ID email
+
+itc_team_id ENV["APP_STORE_CONNECT_ISSUER_ID"] rescue nil
+team_id ENV["APPLE_TEAM_ID"] rescue nil
+
+

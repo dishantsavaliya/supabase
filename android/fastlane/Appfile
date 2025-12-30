@@ -1,0 +1,3 @@
+package_name(ENV["ANDROID_PACKAGE_NAME"] || "com.supabase")
+
+

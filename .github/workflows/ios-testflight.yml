@@ -1,0 +1,58 @@
+name: iOS TestFlight - Beta
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_notes:
+        description: "Release notes for this TestFlight build"
+        required: false
+        default: "Beta build from CI"
+  push:
+    tags:
+      - "ios-v*"
+
+jobs:
+  ios-testflight:
+    name: Build & upload to TestFlight
+    runs-on: macos-latest
+
+    env:
+      # Used by Fastlane / App Store Connect API
+      APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+      APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+      APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+      APP_IDENTIFIER: ${{ secrets.IOS_APP_IDENTIFIER }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
+      RELEASE_NOTES: ${{ github.event.inputs.release_notes || 'Beta build from CI' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+
+      - name: Install JS dependencies
+        run: npm ci
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Install iOS dependencies (CocoaPods)
+        working-directory: ios
+        run: |
+          bundle install
+          bundle exec pod install
+
+      - name: Build & upload to TestFlight via Fastlane
+        working-directory: ios
+        run: |
+          bundle exec fastlane ios beta release_notes:"$RELEASE_NOTES"
+
+

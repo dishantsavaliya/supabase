@@ -1,0 +1,16 @@
+export const colors = {
+  WHITE: '#FFFFFF',
+  BLACK: '#000000',
+  infoColor: '#FFC358',
+  errorColor: '#ff0000ff',
+  successColor: '#00fa0dff',
+  warningColor: '#75B0FD',
+  black50: 'rgba(0,0,0,0.5)',
+  black40: 'rgba(0,0,0,0.4)',
+  black20: 'rgba(0,0,0,0.2)',
+  burntOrange: '#CC4E00',
+  whiteOverlay30: '#FFFFFF4D',
+  pastelRed: '#FF6262',
+  green: 'green',
+  lightGray: '#949DAD',
+};
